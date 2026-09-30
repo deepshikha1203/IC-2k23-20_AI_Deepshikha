@@ -1,0 +1,27 @@
+==================================================
+EXPERIMENT 1: VACUUM CLEANER PROBLEM
+==================================================
+
+[Vacuum Cleaner] Initial State -> Agent at Room A, Environment: {'A': 'Dirty', 'B': 'Dirty'}
+Action: Suck -> Room A cleaned.
+Current State: Agent at Room A, Environment: {'A': 'Clean', 'B': 'Dirty'}
+Action: Move Right -> Moving from Room A to Room B.
+Current State: Agent at Room B, Environment: {'A': 'Clean', 'B': 'Dirty'}
+Action: Suck -> Room B cleaned.
+Current State: Agent at Room B, Environment: {'A': 'Clean', 'B': 'Clean'}
+Goal Reached! Both rooms are clean. Total Actions Taken: 3
+
+
+==================================================
+EXPERIMENT 2: WATER JUG PROBLEM
+==================================================
+Enter capacity of Jug 1: 4
+Enter capacity of Jug 2: 3
+Enter target volume to measure: 2
+
+[Water Jug] Solution Found for target 2L:
+Step 1: Jug 1 = 0L, Jug 2 = 3L
+Step 2: Jug 1 = 3L, Jug 2 = 0L
+Step 3: Jug 1 = 3L, Jug 2 = 3L
+Step 4: Jug 1 = 4L, Jug 2 = 2L
+
