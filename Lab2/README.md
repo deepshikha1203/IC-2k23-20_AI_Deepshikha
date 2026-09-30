@@ -33,6 +33,7 @@ Implement heuristic-based search techniques to solve pathfinding and optimizatio
 
 #### Algorithm Approach
 
+
 * **Hill Climbing:** A local search algorithm that continuously moves in the direction of increasing value (steepest ascent) to find a local maximum.
 * **Best-First Search:** Uses a priority queue ordered by a heuristic function $h(n)$ to greedily explore the most promising node.
 * **A* Search:** Combines path cost $g(n)$ and heuristic estimate $h(n)$ using the evaluation function $f(n) = g(n) + h(n)$ to find the optimal path.
