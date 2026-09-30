@@ -1,77 +1,98 @@
-"""
-Lab 2 - Experiment 1: Breadth-First Search (BFS) and Depth-First Search (DFS)
-Objective: Implement unguided graph traversal algorithms to find paths between nodes.
-"""
-
-from collections import deque
-
-class GraphSearch:
-    def __init__(self, graph):
-        self.graph = graph  # Adjacency list representation
-
-    def bfs(self, start, goal):
-        """Performs Breadth-First Search to find the shortest path."""
-        queue = deque([[start]])
-        visited = set([start])
-
-        while queue:
-            path = queue.popleft()
-            node = path[-1]
-
-            if node == goal:
-                return path
-
-            for neighbor in self.graph.get(node, []):
-                if neighbor not in visited:
-                    visited.add(neighbor)
-                    new_path = list(path)
-                    new_path.append(neighbor)
-                    queue.append(new_path)
-        return None
-
-    def dfs(self, start, goal):
-        """Performs Depth-First Search to find a path."""
-        stack = [[start]]
-        visited = set()
-
-        while stack:
-            path = stack.pop()
-            node = path[-1]
-
-            if node == goal:
-                return path
-
-            if node not in visited:
-                visited.add(node)
-                for neighbor in reversed(self.graph.get(node, [])):
-                    if neighbor not in visited:
-                        new_path = list(path)
-                        new_path.append(neighbor)
-                        stack.append(new_path)
-        return None
-
-
-if __name__ == "__main__":
-    # Sample Graph representation
-    sample_graph = {
-        'A': ['B', 'C'],
-        'B': ['D', 'E'],
-        'C': ['F'],
-        'D': [],
-        'E': ['F'],
-        'F': []
-    }
-
-    searcher = GraphSearch(sample_graph)
-    start_node = 'A'
-    goal_node = 'F'
-
-    print("=" * 50)
-    print("EXPERIMENT 1: BFS and DFS GRAPH SEARCH")
-    print("=" * 50)
-    
-    bfs_path = searcher.bfs(start_node, goal_node)
-    print(f"BFS Path from {start_node} to {goal_node}: {bfs_path}")
-
-    dfs_path = searcher.dfs(start_node, goal_node)
-    print(f"DFS Path from {start_node} to {goal_node}: {dfs_path}")
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Lab 2 - Experiment 1: BFS and DFS Graph Search\n",
+    "**Objective:** Implement unguided graph traversal algorithms to find paths between nodes."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from collections import deque\n",
+    "\n",
+    "class GraphSearch:\n",
+    "    def __init__(self, graph):\n",
+    "        self.graph = graph\n",
+    "\n",
+    "    def bfs(self, start, goal):\n",
+    "        queue = deque([[start]])\n",
+    "        visited = set([start])\n",
+    "\n",
+    "        while queue:\n",
+    "            path = queue.popleft()\n",
+    "            node = path[-1]\n",
+    "\n",
+    "            if node == goal:\n",
+    "                return path\n",
+    "\n",
+    "            for neighbor in self.graph.get(node, []):\n",
+    "                if neighbor not in visited:\n",
+    "                    visited.add(neighbor)\n",
+    "                    new_path = list(path)\n",
+    "                    new_path.append(neighbor)\n",
+    "                    queue.append(new_path)\n",
+    "        return None\n",
+    "\n",
+    "    def dfs(self, start, goal):\n",
+    "        stack = [[start]]\n",
+    "        visited = set()\n",
+    "\n",
+    "        while stack:\n",
+    "            path = stack.pop()\n",
+    "            node = path[-1]\n",
+    "\n",
+    "            if node == goal:\n",
+    "                return path\n",
+    "\n",
+    "            if node not in visited:\n",
+    "                visited.add(node)\n",
+    "                for neighbor in reversed(self.graph.get(node, [])):\n",
+    "                    if neighbor not in visited:\n",
+    "                        new_path = list(path)\n",
+    "                        new_path.append(neighbor)\n",
+    "                        stack.append(new_path)\n",
+    "        return None"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Execute Search on Sample Graph"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sample_graph = {\n",
+    "    'A': ['B', 'C'],\n",
+    "    'B': ['D', 'E'],\n",
+    "    'C': ['F'],\n",
+    "    'D': [],\n",
+    "    'E': ['F'],\n",
+    "    'F': []\n",
+    "}\n",
+    "\n",
+    "searcher = GraphSearch(sample_graph)\n",
+    "print(\"BFS Path:\", searcher.bfs('A', 'F'))\n",
+    "print(\"DFS Path:\", searcher.dfs('A', 'F'))"
+   ]
+  }
+ ],
+ "metadata": {
+  "language_info": {
+   "name": "python"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
