@@ -1,0 +1,61 @@
+{
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# Problem 2: Graph Traversal using Depth-First Search (DFS)\n",
+                "\n",
+                "### Objective\n",
+                "Traverse an arbitrary network by visiting a node and following its path as deep as possible before backtracking.\n",
+                "\n",
+                "### How It Works\n",
+                "- Relies on a recursive function (call stack).\n",
+                "- Uses a `visited` set to ensure every reachable node is inspected once without getting stuck in loops."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": null,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "def dfs_traverse(graph, current_node, visited=None, traversal_list=None):\n",
+                "    if visited is None:\n",
+                "        visited = set()\n",
+                "    if traversal_list is None:\n",
+                "        traversal_list = []\n",
+                "        \n",
+                "    visited.add(current_node)\n",
+                "    traversal_list.append(current_node)\n",
+                "    \n",
+                "    for neighbor in graph.get(current_node, []):\n",
+                "        if neighbor not in visited:\n",
+                "            dfs_traverse(graph, neighbor, visited, traversal_list)\n",
+                "            \n",
+                "    return traversal_list\n",
+                "\n",
+                "# Adjacency list representation of a sample graph\n",
+                "graph = {\n",
+                "    'A': ['B', 'C'],\n",
+                "    'B': ['D', 'E'],\n",
+                "    'C': ['F'],\n",
+                "    'D': [],\n",
+                "    'E': ['F'],\n",
+                "    'F': []\n",
+                "}\n",
+                "\n",
+                "start_node = 'A'\n",
+                "order = dfs_traverse(graph, start_node)\n",
+                "print(\"DFS Traversal Order:\", \" -> \".join(order))"
+            ]
+        }
+    ],
+    "metadata": {
+        "language_info": {
+            "name": "python"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+}
